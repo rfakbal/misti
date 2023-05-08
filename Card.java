@@ -2,12 +2,12 @@ public class Card{
     private String suit;
     private String rank;
     private int point;
-    private final String[] suits = {"Spades","Clubs","Hearts","Diamonds"};
+    private final String[] suits = {"S","C","H","D"};
     private final String[] ranks = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
-    public Card(String suit, String rank, int point){
+    public Card(String suit, String rank){
         this.suit = suit;
         this.rank = rank;
-        this.point = point;
+        point = 1;
     }
 
     public boolean cardCheck(Card test){
@@ -15,6 +15,23 @@ public class Card{
             return true;
         }
         return false;
+    }
+
+    public void cardPrint(){
+        switch(this.suit){
+            case "S":
+            System.out.println(this.getRank()+ " of Spades");
+            break;
+            case "H":
+            System.out.println(this.getRank()+ " of Hearts");
+            break;
+            case "D":
+            System.out.println(this.getRank()+ " of Diamonds");
+            break;
+            case "C":
+            System.out.println(this.getRank()+ " of Clubs");
+            break;
+        }
     }
 
     public String getSuit() {
