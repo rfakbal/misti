@@ -3,7 +3,7 @@ public class Card{
     private char rank;
     private int point;
     private boolean pointCheck;
-    public Card(String suit, String rank){
+    public Card(char suit, char rank){
         this.suit = suit;
         this.rank = rank;
         point = 1;
