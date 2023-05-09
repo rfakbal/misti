@@ -11,7 +11,7 @@ public class Card{
     }
 
     public boolean cardCheck(Card test){
-        if(this.getRank().equals(test.getRank())|| this.getRank().equals("J")){
+        if(this.getRank()==test.getRank()|| this.getRank()=='J'){
             return true;
         }
         return false;
@@ -19,17 +19,17 @@ public class Card{
 
     public void cardPrint(){
         switch(this.suit){
-            case "S":
-            System.out.println(this.getRank()+ " of Spades");
+            case 'S':
+            System.out.println(this.getRank()+ " of Spades "+ this.getPoint());
             break;
-            case "H":
-            System.out.println(this.getRank()+ " of Hearts");
+            case 'H':
+            System.out.println(this.getRank()+ " of Hearts "+ this.getPoint());
             break;
-            case "D":
-            System.out.println(this.getRank()+ " of Diamonds");
+            case 'D':
+            System.out.println(this.getRank()+ " of Diamonds "+ this.getPoint());
             break;
-            case "C":
-            System.out.println(this.getRank()+ " of Clubs");
+            case 'C':
+            System.out.println(this.getRank()+ " of Clubs "+ this.getPoint());
             break;
         }
     }
@@ -39,7 +39,7 @@ public class Card{
     }
 
     public void PointCheck() {
-        pointCheck = false;
+        pointCheck = true;
     }
 
     public char getSuit() {
