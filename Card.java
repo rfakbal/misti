@@ -1,13 +1,13 @@
 public class Card{
-    private String suit;
-    private String rank;
+    private char suit;
+    private char rank;
     private int point;
-    private final String[] suits = {"S","C","H","D"};
-    private final String[] ranks = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+    private boolean pointCheck;
     public Card(String suit, String rank){
         this.suit = suit;
         this.rank = rank;
         point = 1;
+        pointCheck = false;
     }
 
     public boolean cardCheck(Card test){
@@ -34,7 +34,15 @@ public class Card{
         }
     }
 
-    public String getSuit() {
+    public boolean getPointCheck() {
+        return pointCheck;
+    }
+
+    public void PointCheck() {
+        pointCheck = false;
+    }
+
+    public char getSuit() {
         return suit;
     }
 
@@ -42,15 +50,15 @@ public class Card{
         return point;
     }
 
-    public String getRank() {
+    public char getRank() {
         return rank;
     }
 
-    public void setSuit(String suit){
+    public void setSuit(char suit){
         this.suit = suit; 
     }
 
-    public void setRank(String rank){
+    public void setRank(char rank){
         this.rank = rank;
     }
 
