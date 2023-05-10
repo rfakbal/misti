@@ -1,5 +1,10 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Game{
+
+    private String verboseMode = false;
+    private int rounds;
 
     ArrayList<Card> table = new ArrayList<Card>;
 
@@ -8,11 +13,8 @@ public class Game{
     }
 
     public void startRound(){
-        //will be implemented in subclasses. @bba
+        //will be implemented in subclasses. bba
     }
 
-    public void playCard(){
-        //will be implemented in subclasses. @bba
-    }
 
 }
