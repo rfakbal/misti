@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main { 
     public static void main(String[] args) {
@@ -28,6 +29,28 @@ public class Main {
             System.err.println("Has Problem : " + e.getMessage());
             System.exit(1);
         }
-        Game game = new Game();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("How Many Players 2 or 4 Choose");
+        numPlayers = scan.nextInt();
+        Game game;
+        if (numPlayers == 2) {
+            System.out.println("Which bot do you want to play with?\n1-Novice\n2-Regular\n3-Expert");
+            int botChoice = scan.nextInt();
+            String choosenBot;
+            if (botChoice == 1) {
+                choosenBot = "novice";
+            } else if (botChoice == 2) {
+                choosenBot = "regular";
+            } else {
+                choosenBot = "expert";
+            }
+            game = new TwoPlayer();
+        } else {
+            game = new FourPlayer();
+        }
+        game.startRound();
     }
     
+}
+
+
