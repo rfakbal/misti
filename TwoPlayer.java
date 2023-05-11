@@ -11,8 +11,15 @@ public class TwoPlayer extends Game{
     private int rounds;
     Deck deck;
 
-    public TwoPlayer(){
+    public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , int rounds , boolean verboseMode){
         super();
+
+        playerCreator(Player1 , Type1 , one);
+        playerCreator(Player2 , Type2 , two);
+
+        this.rounds = rounds;
+        this.verboseMode = verboseMode;
+        
     }
 
     @Override
@@ -21,7 +28,14 @@ public class TwoPlayer extends Game{
             one.recieveCard(deck.giveCard());
             two.recieveCard(deck.giveCard());
         }
+
+        for(int i = 0 ; i < 4 ; i++) {
+            one.playCard(table);
+            two.playCard(table);
+        }
         
     }
     
+
+
 }
