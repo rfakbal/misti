@@ -9,25 +9,21 @@ public class FourPlayer extends TwoPlayer {
 
     ArrayList<Card> table = new ArrayList<Card>();
     
-    private String verboseMode = false;
+    private boolean verboseMode = false;
     private int rounds;
+    Deck deck;
 
     public FourPlayer() {
         super();
     }
 
-    @override
+    @Override
     public void startRound() {        
-        for (int i = 0 ; i < 4 ; i++) {
-            public void startRound(){
-                for(int i = 0 ; i < 4 ; i++ ) {
-                    one.recieveCard(Deck.giveCard());
-                    two.recieveCard(Deck.giveCard());
-                    three.recieveCard(Deck.giveCard());
-                    four.recieveCard(Deck.giveCard());
-                }
-                
-            }
+        for (int i = 0 ; i < 4 ; i++) { 
+            one.recieveCard(deck.giveCard());
+            two.recieveCard(deck.giveCard());
+            three.recieveCard(deck.giveCard());
+            four.recieveCard(deck.giveCard());
         }
     }
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Player {
 
-    ArrayList<Card> Hand = new ArrayList<Card>;
+    ArrayList<Card> Hand = new ArrayList<Card>();
 
     private String playerName;
     private int playerScore;

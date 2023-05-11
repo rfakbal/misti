@@ -1,15 +1,15 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Game{
 
-    private String verboseMode = false;
+    private boolean verboseMode = false;
     private int rounds;
 
-    ArrayList<Card> table = new ArrayList<Card>;
+    ArrayList<Card> table = new ArrayList<Card>();
+    Deck deck;
 
     public Game() {
-        Deck deck = new Deck();
+        deck = new Deck();
     }
 
     public void startRound(){
