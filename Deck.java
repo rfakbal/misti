@@ -86,7 +86,7 @@ public class Deck{
              }
         }
         catch(Exception e ){
-            System.out.println("");
+            System.out.println("Point file not found, default point value for each card is set to 1");
         }
     }
 }
