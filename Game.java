@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Game{
-
     private boolean verboseMode = false;
     private int rounds;
 
@@ -35,7 +34,13 @@ public class Game{
             break; 
         }
     }
-
     
+    public static ArrayList getTable(){
+        return table;
+    }
+
+    public void addToTable(Card c){
+        table.add(c);
+    }
 
 }
