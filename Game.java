@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Game{
-    private boolean verboseMode = false;
-    private int rounds;
+    protected boolean verboseMode = false;
+    protected int rounds;
 
     static ArrayList<Card> table = new ArrayList<Card>();
     Deck deck;
@@ -22,25 +22,25 @@ public class Game{
             break;
             
             case "N":
-            player = new NoviceBot(name);
+            player = new Novice(name);
             break;
 
             case "R":
-            player = new RegularBot(name);
+            player = new Regular(name);
             break;
 
             case "E":
-            player = new ExpertBot(name);
+            player = new Expert(name);
             break; 
         }
     }
     
-    public static ArrayList getTable(){
+    public static ArrayList<Card> getTable(){
         return table;
     }
 
-    public void addToTable(Card c){
-        table.add(c);
+    public Card addToTable(Card c){
+        return c;
     }
 
 }

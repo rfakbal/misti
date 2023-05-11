@@ -16,8 +16,8 @@ public class Player {
         Hand.add(in);
     }
 
-    public void playCard(){ // Computer players should take Table ArrayList as a parameter to choose their card to play. However, human players don't need it. bba
-        //will be implemented in subclasses. bba
+    public Card playCard(){ // Computer players should take Table ArrayList as a parameter to choose their card to play. However, human players don't need it. bba
+        return null;//will be implemented in subclasses. bba
     }
 
     public int getPlayerScore() {
