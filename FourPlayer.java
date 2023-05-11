@@ -7,11 +7,6 @@ public class FourPlayer extends Game {
     Player three;
     Player four;
 
-    ArrayList<Card> table = new ArrayList<Card>();
-    
-    private boolean verboseMode = false;
-    private int rounds;
-    Deck deck;
 
     public FourPlayer(String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , int rounds , boolean verboseMode) {
         super();
@@ -36,10 +31,10 @@ public class FourPlayer extends Game {
         }
 
         for(int i = 0 ; i < 4 ; i++) {
-            one.playCard(table);
-            two.playCard(table);
-            three.playCard(table);
-            four.playCard(table);
+            addToTable(one.playCard());
+            addToTable(two.playCard());
+            addToTable(three.playCard());
+            addToTable(four.playCard());
         }
     }
 }

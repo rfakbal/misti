@@ -5,11 +5,6 @@ public class TwoPlayer extends Game{
     Player one;
     Player two;
 
-    ArrayList<Card> table = new ArrayList<Card>();
-
-    private boolean verboseMode = false;
-    private int rounds;
-    Deck deck;
 
     public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , int rounds , boolean verboseMode){
         super();
@@ -30,8 +25,8 @@ public class TwoPlayer extends Game{
         }
 
         for(int i = 0 ; i < 4 ; i++) {
-            one.playCard(table);
-            two.playCard(table);
+            addToTable(one.playCard());
+            addToTable(two.playCard());
         }
         
     }
