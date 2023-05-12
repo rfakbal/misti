@@ -62,7 +62,7 @@ public class Main {
 
         }
         System.out.println("SA");
-        Game misti;
+        Game misti = new Game();
         switch (numPlayers) {
             case 2:
             for (int i = 0 ; i < numRounds ; i++) {
@@ -82,7 +82,9 @@ public class Main {
             }
             break;
         }
-
+        
+        misti.drawScoreBoard();
+        
     }
 
 }

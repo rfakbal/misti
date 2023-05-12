@@ -6,7 +6,6 @@ public class Regular extends Player {
         super(name);
     }
 
-    
     public Card playCard(ArrayList<Card> table) {
         // Find the card with the highest point value that can be played
         Card bestCard = null;
