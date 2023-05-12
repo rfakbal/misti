@@ -35,7 +35,7 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
-
+    
     public ArrayList<Card> getPlayedCards() {
         return null;
     }

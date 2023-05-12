@@ -46,6 +46,10 @@ public class Game{
     public void drawScoreBoard(){
 
     }
+
+    public  void scoreBoardAdd(Player p){
+
+    }
     
     public static ArrayList<Card> getTable(){
         return table;

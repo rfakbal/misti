@@ -42,36 +42,21 @@ public class TwoPlayer extends Game{
     }
 
     @Override
-    public void drawScoreBoard(){
+    public void scoreBoardAdd(Player p){
         boolean stop = false;
-        Player winner; 
         Scanner reader = null;
         Scanner reader1 = null;
-        
-        if(one.getPlayerScore()>two.getPlayerScore()){
-            System.out.println("The winner is " + one.getPlayerName());
-            winner = one;
-        }
-        
-        else if (one.getPlayerScore()<two.getPlayerScore()){
-            System.out.println("The winner is " + two.getPlayerName());
-            winner = two;
-        }
-        
-        else{
-            System.out.println("Draw!");
-            winner = one;
-        }
-        
-        String name = winner.getPlayerName();
+
+        String name = p.getPlayerName();
         String name_updated = name.replace(" ","");
-        int score = winner.getPlayerScore();
+        int score = p.getPlayerScore();
         int[] scores = new int[10];
         int[] scores_last  = new int[11];
         String[] names = new String[10];
         String[] names_last = new String[11];
         String line = "";
         String[] line_arr = new String[2];
+        
         try{
             reader = new Scanner(Paths.get("Scores.txt"));
             for(int i = 0;i<10;i++ ){
@@ -116,6 +101,7 @@ public class TwoPlayer extends Game{
         for(int i = 0;i<10;i++){
             System.out.println((i+1)+"-) "+names_last[i]+" "+scores_last[i]);
         }
+
         Formatter f = null;
         FileWriter fw = null;
 
@@ -127,6 +113,7 @@ public class TwoPlayer extends Game{
                 f.format("%s %d\n",names_last[i],scores_last[i]);
             }
         }
+
         catch(Exception e){
             System.err.println("");
         }
@@ -137,8 +124,26 @@ public class TwoPlayer extends Game{
             }
         }
 
+    }
+
+    @Override
+    public void drawScoreBoard(){
+        
+        if(one.getPlayerScore()>two.getPlayerScore()){
+            System.out.println("The winner is " + one.getPlayerName());
+            scoreBoardAdd(one);
+        }
+        
+        else if (one.getPlayerScore()<two.getPlayerScore()){
+            System.out.println("The winner is " + two.getPlayerName());
+            scoreBoardAdd(two);
+        }
+        
+        else{
+            System.out.println("Draw!");
+            scoreBoardAdd(one);
+            scoreBoardAdd(two);
+        }
 
     }   
-
-
 }
