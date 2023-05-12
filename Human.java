@@ -11,7 +11,9 @@ public class Human extends Player {
     public Card playCard() {
         System.out.println("Your hand: ");
         for (int i = 0; i < Hand.size(); i++) {
-            System.out.println((i + 1) + ": " + Hand.get(i).toString());
+            System.out.print((i + 1) + ": ");
+            Hand.get(i).cardPrint();
+            System.out.println();
         }
         System.out.println("Choose a card to play (enter the number): ");
         int choice = getInput(Hand.size() + 1) - 1;

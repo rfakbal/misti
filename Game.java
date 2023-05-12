@@ -18,11 +18,11 @@ public class Game{
 
     }
 
-    public void startRound(){
+    public void startTurn(){
         //implemented in the subclasses bba
     }
 
-    public void playerCreator(String name, String type,Player player) {
+    public Player playerCreator(String name, String type,Player player) {
         switch (type) { // No default case because all of the exceptions will be handled in the main method. bba
             case "H":
             player = new Human(name);
@@ -40,21 +40,28 @@ public class Game{
             player = new Expert(name);
             break; 
         }
+        return player;
     }
     
     public static ArrayList<Card> getTable(){
         return table;
     }
 
-    public Card addToTable(Card c){
-        return c;
+    public void addToTable(Card c){
+        table.add(c);
     }
 
     public void printTable(){
-        for(int i = 0 ; i < table.size()-1 ; i++){
-            System.out.print(table.get(i) + ",");
+        if (table.size() > 0) {
+            for(int i = 0 ; i < table.size()-1 ; i++){
+                table.get(i).cardPrint();
+                System.out.print(" , ");
+            }
+            System.out.print("\n");
+            table.get(table.size()-1).cardPrint();
+        } else {
+           System.out.println("");
         }
-        System.out.print("\n" + table.get(table.size()-1));
     }
     
     public void checkPlay(Player a){

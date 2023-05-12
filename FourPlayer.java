@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class FourPlayer extends Game {
 
     Player one;
@@ -22,9 +20,9 @@ public class FourPlayer extends Game {
     }
 
     @Override
-    public void startRound() {     
+    public void startTurn() {     
         
-        super.startRound();
+        super.startTurn();
 
         for (int i = 0 ; i < 4 ; i++) { 
             one.recieveCard(deck.giveCard());

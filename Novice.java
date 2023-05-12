@@ -10,7 +10,8 @@ public class Novice extends Player{
         int index = rd.nextInt(Hand.size());
         Card temp = Hand.get(index);
         Hand.remove(index);
-        System.out.println(getPlayerName() + " played " + temp.toString());
+        System.out.println(getPlayerName() + " played ");
+        temp.cardPrint();
         return temp;
     }
 }

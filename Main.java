@@ -3,19 +3,20 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         
-        String playerName_1;
-        String playerName_2;
-        String playerName_3;
-        String playerName_4;
+        String playerName_1 = "";
+        String playerName_2 = "";
+        String playerName_3 = "";
+        String playerName_4 = "";
 
-        String playerExpertise_1;
-        String playerExpertise_2;
-        String playerExpertise_3;
-        String playerExpertise_4;
+        String playerExpertise_1 = "";
+        String playerExpertise_2 = "";
+        String playerExpertise_3 = "";
+        String playerExpertise_4 = "";
 
         int numPlayers = 0;
         String pointFileName;
         boolean verbose = false;
+        int numRounds = 1;
 
         try {
             // number of players
@@ -66,14 +67,18 @@ public class Main {
             case 2:
             for (int i = 0 ; i < numRounds ; i++) {
                 misti = new TwoPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , verbose);
-                misti.startRound();
+                for (int k = 0 ; k < 6 ; k++) {
+                    misti.startTurn();
+                }
             }
             break;
             
             case 4:
             for (int i = 0 ; i < numRounds ; i++) {
                 misti = new FourPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , playerName_3 , playerExpertise_3 , playerName_4 , playerExpertise_4 ,verbose);
-                misti.startRound();
+                for (int k = 0 ; k < 4 ; k++) {
+                    misti.startTurn();
+                }
             }
             break;
         }

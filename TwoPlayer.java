@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class TwoPlayer extends Game{
     
     Player one;
@@ -9,17 +7,17 @@ public class TwoPlayer extends Game{
     public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , boolean verboseMode){
         super();
 
-        playerCreator(Player1 , Type1 , one);
-        playerCreator(Player2 , Type2 , two);
+        one = playerCreator(Player1 , Type1 , one);
+        two = playerCreator(Player2 , Type2 , two);
 
         this.verboseMode = verboseMode;
         
     }
 
     @Override
-    public void startRound(){
+    public void startTurn(){
 
-        super.startRound();
+        super.startTurn();
 
         for(int i = 0 ; i < 4 ; i++ ) {
             one.recieveCard(deck.giveCard());
