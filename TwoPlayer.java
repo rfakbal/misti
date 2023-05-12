@@ -19,17 +19,25 @@ public class TwoPlayer extends Game{
 
     @Override
     public void startRound(){
+
+        super.startRound();
+
         for(int i = 0 ; i < 4 ; i++ ) {
             one.recieveCard(deck.giveCard());
             two.recieveCard(deck.giveCard());
         }
 
         for(int i = 0 ; i < 4 ; i++) {
+            printTable();
             addToTable(one.playCard());
+            checkPlay(one);
+            printTable();
             addToTable(two.playCard());
+            checkPlay(two);
         }
         
     }
+
     
 
 

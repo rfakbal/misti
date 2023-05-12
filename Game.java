@@ -12,7 +12,8 @@ public class Game{
     }
 
     public void startRound(){
-        //will be implemented in subclasses. bba
+        deck.shuffleDeck();
+        deck.cutDeck();
     }
 
     public void playerCreator(String name, String type,Player player) {
@@ -41,6 +42,39 @@ public class Game{
 
     public Card addToTable(Card c){
         return c;
+    }
+
+    public void printTable(){
+        for(int i = 0 ; i < table.size()-1 ; i++){
+            System.out.print(table.get(i) + ",");
+        }
+        System.out.print("\n" + table.get(table.size()-1));
+    }
+    
+    public void checkPlay(Player a){
+        int point = 0;
+        if (table.size() > 1) { 
+            if(table.size() == 2) { //checking the misti situation bba
+                if (table.get(1).cardCheck(table.get(0))) {
+                    System.out.println(a.getPlayerName() + " made misti!");
+                    point = (table.get(1).getPoint() + table.get(0).getPoint()) * 5;
+                    System.out.println(a.getPlayerName() + " earned " + point + " points.");
+                    a.setPlayerPoint(point);
+                    point = 0;
+                    table.clear();
+                }
+            } else { // every other card gaining situation bba
+                if (table.get(table.size()-1).cardCheck(table.get(table.size()-2))) {
+                    for(int i = 0 ; i < table.size() ; i++ ) {
+                        point += table.get(i).getPoint();
+                    }
+                    System.out.println(a.getPlayerName() + " earned " + point + " points.");
+                    a.setPlayerPoint(point);
+                    point = 0;
+                    table.clear();
+                }
+            }
+        }
     }
 
 }
