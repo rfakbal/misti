@@ -61,6 +61,23 @@ public class Main {
 
         }
         System.out.println("SA");
+        Game misti;
+        switch (numPlayers) {
+            case 2:
+            for (int i = 0 ; i < numRounds ; i++) {
+                misti = new TwoPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , verbose);
+                misti.startRound();
+            }
+            break;
+            
+            case 4:
+            for (int i = 0 ; i < numRounds ; i++) {
+                misti = new FourPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , playerName_3 , playerExpertise_3 , playerName_4 , playerExpertise_4 ,verbose);
+                misti.startRound();
+            }
+            break;
+        }
+
     }
 
 }

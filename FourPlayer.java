@@ -8,7 +8,7 @@ public class FourPlayer extends Game {
     Player four;
 
 
-    public FourPlayer(String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , int rounds , boolean verboseMode) {
+    public FourPlayer(String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , boolean verboseMode) {
         super();
 
         playerCreator(Player1 , Type1 , one);
@@ -16,8 +16,8 @@ public class FourPlayer extends Game {
         playerCreator(Player3 , Type3 , three);
         playerCreator(Player4 , Type4 , four);
 
-        this.rounds = rounds;
         this.verboseMode = verboseMode;
+
         
     }
 

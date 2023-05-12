@@ -6,13 +6,12 @@ public class TwoPlayer extends Game{
     Player two;
 
 
-    public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , int rounds , boolean verboseMode){
+    public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , boolean verboseMode){
         super();
 
         playerCreator(Player1 , Type1 , one);
         playerCreator(Player2 , Type2 , two);
 
-        this.rounds = rounds;
         this.verboseMode = verboseMode;
         
     }

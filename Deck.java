@@ -31,9 +31,19 @@ public class Deck{
         Collections.shuffle(Deck);
     }
 
+    public void cutDeck(){
+        int deckSize = Deck.size();
+        int cut = (int)(Math.random()*deckSize);
+        ArrayList<Card> top = new ArrayList<Card>(Deck.subList(0, cut));
+        ArrayList<Card> bottom = new ArrayList<Card>(Deck.subList(cut, deckSize));
+        Deck.clear();
+        Deck.addAll(bottom);
+        Deck.addAll(top);
+    }
+
     public Card giveCard(){
-        Card placeholder = Deck.get(0);
-        Deck.remove(0);
+        Card placeholder = Deck.get(Deck.size()-1);
+        Deck.remove(Deck.size()-1);
         return placeholder;
     }
     

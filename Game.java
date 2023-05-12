@@ -9,11 +9,17 @@ public class Game{
 
     public Game() {
         deck = new Deck();
+        deck.shuffleDeck();
+        deck.cutDeck();
+
+        for(int i = 0 ; i < 4 ; i++) { //first 4 card will be opened in the table bba
+            table.add(deck.giveCard());
+        }
+
     }
 
     public void startRound(){
-        deck.shuffleDeck();
-        deck.cutDeck();
+        //implemented in the subclasses bba
     }
 
     public void playerCreator(String name, String type,Player player) {
@@ -59,7 +65,7 @@ public class Game{
                     System.out.println(a.getPlayerName() + " made misti!");
                     point = (table.get(1).getPoint() + table.get(0).getPoint()) * 5;
                     System.out.println(a.getPlayerName() + " earned " + point + " points.");
-                    a.setPlayerPoint(point);
+                    a.setPlayerScore(point);
                     point = 0;
                     table.clear();
                 }
@@ -69,7 +75,7 @@ public class Game{
                         point += table.get(i).getPoint();
                     }
                     System.out.println(a.getPlayerName() + " earned " + point + " points.");
-                    a.setPlayerPoint(point);
+                    a.setPlayerScore(point);
                     point = 0;
                     table.clear();
                 }
