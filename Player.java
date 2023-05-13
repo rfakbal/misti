@@ -7,6 +7,7 @@ public class Player {
 
     protected String playerName;
     protected int playerScore;
+    protected String type;
 
     public void setPlayerScore(int score) {
         playerScore += score;
@@ -37,5 +38,9 @@ public class Player {
     
     public ArrayList<Card> getPlayedCards() {
         return null;
+    }
+
+    public String getType(){
+        return this.type;
     }
 }

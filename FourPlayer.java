@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class FourPlayer extends Game {
-
+    boolean ifPrint = false;
     protected Player one;
     protected Player two;
     protected Player three;
@@ -62,12 +62,15 @@ public class FourPlayer extends Game {
         String name = p.getPlayerName();
         String name_updated = name.replace(" ","");
         int score = p.getPlayerScore();
+        String player_expertise = p.getType();
         int[] scores = new int[10];
         int[] scores_last  = new int[11];
         String[] names = new String[10];
         String[] names_last = new String[11];
+        String[] expertise = new String[10];
+        String[] expertise_last = new String[11];
         String line = "";
-        String[] line_arr = new String[2];
+        String[] line_arr = new String[3];
         
         try{
             reader = new Scanner(Paths.get("Scores.txt"));
@@ -76,6 +79,7 @@ public class FourPlayer extends Game {
                 line_arr = line.split(" ");
                 scores[i] = Integer.valueOf(line_arr[1]);
                 names[i] = line_arr[0];
+                expertise[i] = line_arr[2];
              }
         }
         
@@ -89,29 +93,36 @@ public class FourPlayer extends Game {
         
         int temp = 0;
         String temp1 = "";
+        String temp2 = "";
         
         for(int i = 0;i<10;i++){
             if(score>scores[i]&&!stop){
                 temp = scores[i];
                 temp1 = names[i];
+                temp2 = expertise[i];
                 scores_last[i+1] = temp;
                 names_last[i+1] = temp1;
+                expertise_last[i+1] = temp2;
                 names_last[i] = name_updated;
                 scores_last[i] = score;
+                expertise_last[i] = player_expertise; 
                 for(int k = 0;k<i;k++){
                     names_last[k] = names[k];
                     scores_last[k] = scores[k];
+                    expertise_last[k] = expertise[k];
                 }
                 for(int j = i+2;j<11-i;j++){
                     names_last[j] = names[j-1];
                     scores_last[j] = scores[j-1];
+                    expertise_last[j] = expertise[j-1];
                 }
                 stop = true;
             }
         }
-        
-        for(int i = 0;i<10;i++){
-            System.out.println((i+1)+"-) "+names_last[i]+" "+scores_last[i]);
+        if(ifPrint){
+            for(int i = 0;i<10;i++){
+                System.out.println((i+1)+"-) "+names_last[i]+" "+scores_last[i]+" "+ expertise_last[i]);
+            }
         }
 
         Formatter f = null;
@@ -122,7 +133,7 @@ public class FourPlayer extends Game {
             reader1 = new Scanner(Paths.get("Scores.txt"));
             f = new Formatter(fw);
             for(int i = 0;i<10;i++){
-                f.format("%s %d\n",names_last[i],scores_last[i]);
+                f.format("%s %d %s \n",names_last[i],scores_last[i],expertise_last[i]);
             }
         }
 
@@ -140,91 +151,10 @@ public class FourPlayer extends Game {
 
     @Override
     public void drawScoreBoard(){
-        
-        Player winner = one;
-        Player winner_second = null;
-        Player winner_third = null;
-        Player winner_fourth = null;
-        
-        // Check if player two has a higher score
-        if (winner.getPlayerScore() < two.getPlayerScore()) {
-            winner = two;
-            winner_second = null;
-            winner_third = null;
-            winner_fourth = null;
-        } else if (winner.getPlayerScore() == two.getPlayerScore()) {
-            // There is a tie between player one and player two
-            winner_second = two;
-            scoreBoardAdd(one);
-            scoreBoardAdd(two);
-        }
-        
-        // Check if player three has a higher score
-        if (winner.getPlayerScore() < three.getPlayerScore()) {
-            winner = three;
-            winner_second = null;
-            winner_third = null;
-            winner_fourth = null;
-        } else if (winner.getPlayerScore() == three.getPlayerScore()) {
-            // There is a tie between player one, player two, and player three
-            if (winner_second == null) {
-                winner_second = three;
-            } else if (winner == two) {
-                winner_third = three;
-            } else {
-                winner_fourth = three;
-            }
-            scoreBoardAdd(one);
-            scoreBoardAdd(two);
-            scoreBoardAdd(three);
-        }
-        
-        // Check if player four has a higher score
-        if (winner.getPlayerScore() < four.getPlayerScore()) {
-            winner = four;
-            winner_second = null;
-            winner_third = null;
-            winner_fourth = null;
-        } else if (winner.getPlayerScore() == four.getPlayerScore()) {
-            // There is a tie between player one, player two, player three, and player four
-            if (winner_second == null) {
-                winner_second = four;
-            } else if (winner_third == null) {
-                winner_third = four;
-            } else {
-                winner_fourth = four;
-            }
-            scoreBoardAdd(one);
-            scoreBoardAdd(two);
-            scoreBoardAdd(three);
-            scoreBoardAdd(four);
-        }
-        
-        // Check if there is a tie between two or more players
-        if (winner_second != null) {
-            if (winner_third == null) {
-                if (winner_fourth == null) {
-                    // There is a tie between two players
-                    scoreBoardAdd(winner);
-                    scoreBoardAdd(winner_second);
-                } else {
-                    // There is a tie between three players
-                    scoreBoardAdd(winner);
-                    scoreBoardAdd(winner_second);
-                    scoreBoardAdd(winner_third);
-                }
-            } else {
-                // There is a tie between four players
-                scoreBoardAdd(winner);
-                scoreBoardAdd(winner_second);
-                scoreBoardAdd(winner_third);
-                scoreBoardAdd(winner_fourth);
-            }
-        } else {
-            // There is a clear winner
-            scoreBoardAdd(winner);
-        }
-        
+        scoreBoardAdd(one);
+        scoreBoardAdd(two);
+        scoreBoardAdd(three);
+        scoreBoardAdd(four);
     } 
 
 }

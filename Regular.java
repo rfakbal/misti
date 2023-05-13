@@ -2,6 +2,7 @@ import java.util.ArrayList;
 public class Regular extends Player {
     public Regular(String name) {
         super(name);
+        type = "R";
     }
 
     @Override

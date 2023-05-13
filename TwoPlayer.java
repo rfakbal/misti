@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class TwoPlayer extends Game{
-    
+    boolean ifPrint = false;
     Player one;
     Player two;
 
@@ -50,12 +50,15 @@ public class TwoPlayer extends Game{
         String name = p.getPlayerName();
         String name_updated = name.replace(" ","");
         int score = p.getPlayerScore();
+        String player_expertise = p.getType();
         int[] scores = new int[10];
         int[] scores_last  = new int[11];
         String[] names = new String[10];
         String[] names_last = new String[11];
+        String[] expertise = new String[10];
+        String[] expertise_last = new String[11];
         String line = "";
-        String[] line_arr = new String[2];
+        String[] line_arr = new String[3];
         
         try{
             reader = new Scanner(Paths.get("Scores.txt"));
@@ -64,6 +67,7 @@ public class TwoPlayer extends Game{
                 line_arr = line.split(" ");
                 scores[i] = Integer.valueOf(line_arr[1]);
                 names[i] = line_arr[0];
+                expertise[i] = line_arr[2];
              }
         }
         
@@ -77,29 +81,36 @@ public class TwoPlayer extends Game{
         
         int temp = 0;
         String temp1 = "";
+        String temp2 = "";
         
         for(int i = 0;i<10;i++){
             if(score>scores[i]&&!stop){
                 temp = scores[i];
                 temp1 = names[i];
+                temp2 = expertise[i];
                 scores_last[i+1] = temp;
                 names_last[i+1] = temp1;
+                expertise_last[i+1] = temp2;
                 names_last[i] = name_updated;
                 scores_last[i] = score;
+                expertise_last[i] = player_expertise; 
                 for(int k = 0;k<i;k++){
                     names_last[k] = names[k];
                     scores_last[k] = scores[k];
+                    expertise_last[k] = expertise[k];
                 }
                 for(int j = i+2;j<11-i;j++){
                     names_last[j] = names[j-1];
                     scores_last[j] = scores[j-1];
+                    expertise_last[j] = expertise[j-1];
                 }
                 stop = true;
             }
         }
-        
-        for(int i = 0;i<10;i++){
-            System.out.println((i+1)+"-) "+names_last[i]+" "+scores_last[i]);
+        if(ifPrint){
+            for(int i = 0;i<10;i++){
+                System.out.println((i+1)+"-) "+names_last[i]+" "+scores_last[i]+" "+ expertise_last[i]);
+            }
         }
 
         Formatter f = null;
@@ -110,7 +121,7 @@ public class TwoPlayer extends Game{
             reader1 = new Scanner(Paths.get("Scores.txt"));
             f = new Formatter(fw);
             for(int i = 0;i<10;i++){
-                f.format("%s %d\n",names_last[i],scores_last[i]);
+                f.format("%s %d %s \n",names_last[i],scores_last[i],expertise_last[i]);
             }
         }
 
@@ -128,22 +139,8 @@ public class TwoPlayer extends Game{
 
     @Override
     public void drawScoreBoard(){
-        
-        if(one.getPlayerScore()>two.getPlayerScore()){
-            System.out.println("The winner is " + one.getPlayerName());
-            scoreBoardAdd(one);
-        }
-        
-        else if (one.getPlayerScore()<two.getPlayerScore()){
-            System.out.println("The winner is " + two.getPlayerName());
-            scoreBoardAdd(two);
-        }
-        
-        else{
-            System.out.println("Draw!");
-            scoreBoardAdd(one);
-            scoreBoardAdd(two);
-        }
-
+        scoreBoardAdd(one);
+        ifPrint = true;
+        scoreBoardAdd(two);
     }   
 }

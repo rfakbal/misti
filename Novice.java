@@ -2,6 +2,7 @@ import java.util.Random;
 public class Novice extends Player{
     public Novice(String name){
         super(name);
+        type = "N";
     }
 
     @Override
