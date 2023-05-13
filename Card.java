@@ -20,16 +20,16 @@ public class Card{
     public void cardPrint(){
         switch(this.suit){
             case 'S':
-            System.out.print(this.getRank()+ " of Spades ");
+            System.out.print( "♠" + this.getRank());
             break;
             case 'H':
-            System.out.print(this.getRank()+ " of Hearts ");
+            System.out.print( "♥" + this.getRank());
             break;
             case 'D':
-            System.out.print(this.getRank()+ " of Diamonds ");
+            System.out.print( "♦" + this.getRank());
             break;
             case 'C':
-            System.out.print(this.getRank()+ " of Clubs ");
+            System.out.print( "♣" + this.getRank());
             break;
         }
     }

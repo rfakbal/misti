@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<Card> hand;
-    private ArrayList<Card> playedCard;
+    protected ArrayList<Card> playedCard;
 
-    ArrayList<Card> Hand = new ArrayList<Card>();
+    protected ArrayList<Card> Hand = new ArrayList<Card>();
 
-    private String playerName;
-    private int playerScore;
+    protected String playerName;
+    protected int playerScore;
 
     public void setPlayerScore(int score) {
         playerScore += score;

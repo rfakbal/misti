@@ -62,7 +62,7 @@ public class Main {
 
         }
         System.out.println("SA");
-        Game misti = new Game();
+        Game misti = null;
         switch (numPlayers) {
             case 2:
             for (int i = 0 ; i < numRounds ; i++) {

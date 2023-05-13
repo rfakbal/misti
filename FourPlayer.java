@@ -1,9 +1,15 @@
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Formatter;
+import java.io.FileWriter;
+import java.util.Scanner;
+
 public class FourPlayer extends Game {
 
-    Player one;
-    Player two;
-    Player three;
-    Player four;
+    protected Player one;
+    protected Player two;
+    protected Player three;
+    protected Player four;
 
 
     public FourPlayer(String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , boolean verboseMode) {

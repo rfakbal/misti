@@ -1,4 +1,9 @@
 import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Formatter;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 public class Game{
     protected boolean verboseMode = false;
@@ -86,9 +91,7 @@ public class Game{
                 }
             } else { // every other card gaining situation bba
                 if (table.get(table.size()-1).cardCheck(table.get(table.size()-2))) {
-                    for(int i = 0 ; i < table.size() ; i++ ) {
-                        point += table.get(i).getPoint();
-                    }
+                    point = countTablePoints();
                     System.out.println(a.getPlayerName() + " earned " + point + " points.");
                     a.setPlayerScore(point);
                     point = 0;
@@ -96,6 +99,14 @@ public class Game{
                 }
             }
         }
+    }
+
+    public static int countTablePoints(){
+        int point = 0;
+        for(int i = 0 ; i < table.size() ; i++ ) {
+            point += table.get(i).getPoint();
+        }
+        return point;
     }
 
 }

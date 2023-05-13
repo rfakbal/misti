@@ -1,31 +1,73 @@
 import java.util.ArrayList;
-import java.util.Random;
-
 public class Regular extends Player {
     public Regular(String name) {
         super(name);
     }
 
-    public Card playCard(ArrayList<Card> table) {
-        // Find the card with the highest point value that can be played
-        Card bestCard = null;
-        int highestPoint = 0;
-        for (Card card : Hand) {
-            if (card.getRank() == table.get(table.size() - 1).getRank() && card.getPoint() > highestPoint) {
-                bestCard = card;
-                highestPoint = card.getPoint();
+    @Override
+    public Card playCard() {
+        System.out.println("\nRegular's Hand:");
+        for (Card a : Hand){
+            a.cardPrint();
+        }
+        System.out.println();
+        ArrayList<Card> Table = Game.getTable();
+        Card chosen = null;
+        int localOutcome;
+        int smallestOutcome = 2147483647;
+        int index = 0;
+        /*if (Hand.size() == 1 ) {
+            chosen = Hand.get(0);
+            Hand.remove(0);
+            System.out.println();
+            System.out.println(playerName + " played ");
+            chosen.cardPrint();
+            System.out.println();
+            return chosen;
+        } */
+        for (int i = 0 ; i < Hand.size() ; i++) { //for each card in Hand
+            if (Table.size() > 0) { // checking if table is empty
+                if (Hand.get(i).cardCheck(Table.get(Table.size()-1))) { // if the card is able to take the table
+                    localOutcome = Game.countTablePoints() + Hand.get(i).getPoint(); // how many points the player will get if it takes cards on the table
+                    if (localOutcome > 0) { // if positive, bot takes cards
+                        chosen = Hand.get(i);
+                        index = i;
+                        break;
+                    } else {
+                        localOutcome = Hand.get(i).getPoint(); // if negatie bot will it will try to play the smallest point valued card
+                        if (localOutcome <= smallestOutcome) {
+                            smallestOutcome = localOutcome;
+                            chosen = Hand.get(i);
+                            index = i;
+                        }
+                    }
+                } else { //if the bot cannot take the table, it will try to play the smallest point valued card
+                    localOutcome = Hand.get(i).getPoint();
+                    if (localOutcome <= smallestOutcome) {
+                        smallestOutcome = localOutcome;
+                        chosen = Hand.get(i);
+                        index = i;
+                    }
+                }
+            } else { // if the table is empty, bot will play the smallest point valued card besides jack
+                localOutcome = Hand.get(i).getPoint();
+                if (Hand.get(i).getRank() == 'J') {
+                    localOutcome = 2147483647; // Biggest integer to prevent the bot from playing Jack on the empty table if any other options available.
+                }
+                if (localOutcome <= smallestOutcome) {
+                    smallestOutcome = localOutcome;
+                    chosen = Hand.get(i);
+                    index = i;
+                }
             }
         }
-
-        // If no card can be played, choose a random card
-        if (bestCard == null) {
-            Random random = new Random();
-            int index = random.nextInt(Hand.size());
-            bestCard = Hand.get(index);
-        }
-
-        Hand.remove(bestCard);
-        System.out.println(getPlayerName() + " played " + bestCard.toString());
-        return bestCard;
+        chosen = Hand.get(0);
+        Hand.remove(index);
+        System.out.println();
+        System.out.println(playerName + " played ");
+        chosen.cardPrint();
+        System.out.println();
+        return chosen;
+        
     }
 }
