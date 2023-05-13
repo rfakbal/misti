@@ -76,7 +76,7 @@ public class Main {
             case 4:
             for (int i = 0 ; i < numRounds ; i++) {
                 misti = new FourPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , playerName_3 , playerExpertise_3 , playerName_4 , playerExpertise_4 ,verbose);
-                for (int k = 0 ; k < 4 ; k++) {
+                for (int k = 0 ; k < 3 ; k++) {
                     misti.startTurn();
                 }
             }

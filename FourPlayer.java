@@ -15,10 +15,10 @@ public class FourPlayer extends Game {
     public FourPlayer(String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , boolean verboseMode) {
         super();
 
-        playerCreator(Player1 , Type1 , one);
-        playerCreator(Player2 , Type2 , two);
-        playerCreator(Player3 , Type3 , three);
-        playerCreator(Player4 , Type4 , four);
+        one = playerCreator(Player1 , Type1 , one);
+        two = playerCreator(Player2 , Type2 , two);
+        three = playerCreator(Player3 , Type3 , three);
+        four = playerCreator(Player4 , Type4 , four);
 
         this.verboseMode = verboseMode;
 
