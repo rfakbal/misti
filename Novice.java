@@ -7,11 +7,6 @@ public class Novice extends Player{
 
     @Override
     public Card playCard(){
-        //System.out.println("\n" + playerName +"'s Hand:");
-        //for (Card a : Hand){ //delete in final version bba
-        //    a.cardPrint();
-        //}
-        //System.out.println();
         Random rd = new Random(System.currentTimeMillis());
         int index = rd.nextInt(Hand.size());
         Card temp = Hand.get(index);

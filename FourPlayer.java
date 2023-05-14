@@ -16,15 +16,15 @@ public class FourPlayer extends Game {
     protected Player four;
 
 
-    public FourPlayer(String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , boolean verboseMode) {
-        super();
+    public FourPlayer(String fileName , String Player1, String Type1, String Player2, String Type2 , String Player3 , String Type3 , String Player4 , String Type4 , boolean verboseMode) {
+        super(fileName);
 
         one = playerCreator(Player1 , Type1 , one);
         two = playerCreator(Player2 , Type2 , two);
         three = playerCreator(Player3 , Type3 , three);
         four = playerCreator(Player4 , Type4 , four);
 
-        this.verboseMode = verboseMode;
+        Game.verboseMode = verboseMode;
 
         playerList.add(one);
         playerList.add(two);
@@ -48,7 +48,7 @@ public class FourPlayer extends Game {
 
         for(int i = 0 ; i < 4 ; i++) {
             if (verboseMode) {
-                System.out.print("\n" +i+ ". turn of the hand:");
+                System.out.println("\n" +(i+1)+ ". turn of the hand:");
             }
             addToTable(one.playCard());
             checkPlay(one);

@@ -10,8 +10,9 @@ public class Human extends Player {
 
     @Override
     public Card playCard() {
+        System.out.print("Table: ");
         Game.printTable();
-        System.out.println("Your hand: ");
+        System.out.println("\nYour hand: ");
         for (int i = 0; i < Hand.size(); i++) { //printhand ile degistirilecek bba
             System.out.print((i + 1) + ": ");
             Hand.get(i).cardPrint();
@@ -46,7 +47,6 @@ public class Human extends Player {
                 sc.nextLine();
             }
         }
-        sc.close();
         return input;
 
     }

@@ -7,25 +7,12 @@ public class Regular extends Player {
 
     @Override
     public Card playCard() {
-        //System.out.println("\n" + playerName +"'s Hand:");
-        //for (Card a : Hand){ //delete in final version bba
-        //    a.cardPrint();
-        //}
-        //System.out.println();
         ArrayList<Card> Table = Game.getTable();
         Card chosen = null;
         int localOutcome;
         int smallestOutcome = 2147483647;
         int index = 0;
-        /*if (Hand.size() == 1 ) {
-            chosen = Hand.get(0);
-            Hand.remove(0);
-            System.out.println();
-            System.out.println(playerName + " played ");
-            chosen.cardPrint();
-            System.out.println();
-            return chosen;
-        } */
+
         for (int i = 0 ; i < Hand.size() ; i++) { //for each card in Hand
             if (Table.size() > 0) { // checking if table is empty
                 if (Hand.get(i).cardCheck(Table.get(Table.size()-1))) { // if the card is able to take the table
@@ -62,7 +49,7 @@ public class Regular extends Player {
                 }
             }
         }
-        chosen = Hand.get(0);
+        chosen = Hand.get(index);
         Hand.remove(index);
         if (Game.getVerbose()) {
             System.out.print(playerName + " played ");

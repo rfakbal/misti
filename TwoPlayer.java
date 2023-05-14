@@ -14,13 +14,13 @@ public class TwoPlayer extends Game{
 
     
 
-    public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , boolean verboseMode){
-        super();
+    public TwoPlayer(String fileName , String Player1, String Type1, String Player2, String Type2 , boolean verboseMode){
+        super(fileName);
 
         one = playerCreator(Player1 , Type1 , one);
         two = playerCreator(Player2 , Type2 , two);
 
-        this.verboseMode = verboseMode;
+        Game.verboseMode = verboseMode;
         System.out.println(one.getPlayerName());
         playerList.add(one);
         playerList.add(two);
@@ -40,7 +40,7 @@ public class TwoPlayer extends Game{
 
         for(int i = 0 ; i < 4 ; i++) {
             if (verboseMode) {
-                System.out.print("\n" +i+ ". turn of the hand:");
+                System.out.println("\n" +(i+1)+ ". turn of the hand:");
             }
             addToTable(one.playCard());
             checkPlay(one);

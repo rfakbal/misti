@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
         
@@ -14,7 +12,7 @@ public class Main {
         String playerExpertise_4 = "";
 
         int numPlayers = 0;
-        String pointFileName;
+        String pointFileName = "";
         boolean verbose = false;
         int numRounds = 1;
 
@@ -28,64 +26,84 @@ public class Main {
             // point file name
             pointFileName = args[1];
 
-            if(numPlayers== 2 && (args.length > 7) ){
-                throw new IllegalArgumentException("Too many arguments, program only used first 6 arguments ");
+            if(numPlayers== 2 && (args.length > 8) ){
+                throw new IllegalArgumentException("Too many arguments for 2 players. ");
             }
 
-            if(numPlayers== 4 && (args.length > 11) ){
-                throw new IllegalArgumentException("Too many arguments, program only used first 10 arguments ");
+            if(numPlayers== 4 && (args.length > 12) ){
+                throw new IllegalArgumentException("Too many arguments for 4 players. ");
             }
-
             if(numPlayers==2 ){
                 playerName_1 = args[2];
-                playerExpertise_1 = args[3];
+                playerExpertise_1 = args[3].toUpperCase();
                 playerName_2 = args[4];
-                playerExpertise_2 = args[5];
-                verbose = args[6].equals("true");
+                playerExpertise_2 = args[5].toUpperCase();
+                numRounds = Integer.valueOf(args[6]);
+                verbose = args[7].equals("true");
             }
 
             else{
                 playerName_1 = args[2];
-                playerExpertise_1 = args[3];
+                playerExpertise_1 = args[3].toUpperCase();
                 playerName_2 = args[4];
-                playerExpertise_2 = args[5];
+                playerExpertise_2 = args[5].toUpperCase();
                 playerName_3 = args[6];
-                playerExpertise_3 = args[7];
+                playerExpertise_3 = args[7].toUpperCase();
                 playerName_4 = args[8];
-                playerExpertise_4 = args[9];
-                verbose = args[10].equals("true");
+                playerExpertise_4 = args[9].toUpperCase();
+                numRounds = Integer.valueOf(args[10]);
+                verbose = args[11].equals("true");
             }
+
+            int humancount = 0;
+            if (playerExpertise_1.equals("H")) {
+                humancount++;
+            }
+            if (playerExpertise_2.equals("H")) {
+                humancount++;
+            }
+            if (playerExpertise_3.equals("H")) {
+                humancount++;
+            }
+            if (playerExpertise_4.equals("H")) {
+                humancount++;
+            }
+
+            if(humancount > 1) {
+                throw new IllegalArgumentException("Maximum one human player is allowed.");
+            }
+
+
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
-            System.out.println("Try again with valid arguments");
+            System.out.println("Try again with valid arguments (EX: <PlayerCount> <PointFilePath> <Name> <Type> (For each player) <RoundCount> <VerboseMode>)");
+            System.out.println("Available Player Counts: 2, 4 | Available Player Types: H(Human), N(Novice), R(Regular), E(Expert) | Verbose Modes: true, false");
             System.exit(1);
 
         }
-        System.out.println("SA");
-        Game misti = null;
-        switch (numPlayers) {
-            case 2:
-            for (int i = 0 ; i < numRounds ; i++) {
-                misti = new TwoPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , verbose);
+        System.out.println(numRounds);
+        for (int i = 0 ; i < numRounds ; i++) {
+            System.out.println("Round " + (i+1) + ":");
+            Game misti = null;
+            switch (numPlayers) {
+                case 2:
+                misti = new TwoPlayer( pointFileName , playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , verbose);
                 for (int k = 0 ; k < 6 ; k++) {
                     misti.startTurn();
                 }
-            }
-            break;
+                break;
             
-            case 4:
-            for (int i = 0 ; i < numRounds ; i++) {
-                misti = new FourPlayer(playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , playerName_3 , playerExpertise_3 , playerName_4 , playerExpertise_4 ,verbose);
+                case 4:
+                misti = new FourPlayer( pointFileName , playerName_1 , playerExpertise_1 , playerName_2 , playerExpertise_2 , playerName_3 , playerExpertise_3 , playerName_4 , playerExpertise_4 ,verbose);
                 for (int k = 0 ; k < 3 ; k++) {
                     misti.startTurn();
                 }
+                break;
             }
-            break;
+            misti.giveRemainingCards();
+            misti.printFinalScores();
+            misti.drawScoreBoard();
         }
-        misti.giveRemainingCards();
-        misti.printFinalScores();
-        misti.drawScoreBoard();
-        
     }
 
 }

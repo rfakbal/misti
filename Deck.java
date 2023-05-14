@@ -7,7 +7,7 @@ public class Deck{
     private final char[] ranks = {'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
     private ArrayList<Card> Deck = new ArrayList<Card>();
     private Card placeholder;
-    public Deck(){ //Creates deck of cards in order in an ArrayList @bba
+    public Deck(String fileName){ //Creates deck of cards in order in an ArrayList @bba
         for (char s : suits) {
             for (char r : ranks) {
                 placeholder = new Card( s , r );
@@ -15,10 +15,7 @@ public class Deck{
                 placeholder = null;
             }
         }
-        Scanner sc = new Scanner(System.in);
-        String file = sc.nextLine();
-        pointRead(Deck,file);
-        sc.close();
+        pointRead(Deck,fileName);
     }
 
     public void shuffleDeck(){

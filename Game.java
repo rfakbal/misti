@@ -14,8 +14,8 @@ public class Game{
     protected Deck deck;
     protected Player lastTaker = null;
 
-    public Game() {
-        deck = new Deck();
+    public Game(String fileName) {
+        deck = new Deck(fileName);
         deck.shuffleDeck();
         deck.cutDeck();
 
