@@ -21,7 +21,6 @@ public class TwoPlayer extends Game{
         two = playerCreator(Player2 , Type2 , two);
 
         Game.verboseMode = verboseMode;
-        System.out.println(one.getPlayerName());
         playerList.add(one);
         playerList.add(two);
     }

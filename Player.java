@@ -4,6 +4,7 @@ public class Player {
     protected ArrayList<Card> playedCard;
 
     protected ArrayList<Card> Hand = new ArrayList<Card>();
+    protected static int[] Memory = new int[13];
 
     protected String playerName;
     protected int playerScore;
@@ -50,6 +51,50 @@ public class Player {
             if (i+1 < Hand.size()) {
                 System.out.print(",");
             }
+        }
+    }
+
+    public void addToMemory(Card a) {
+        switch(a.getRank()) {
+            case 'A':
+                Memory[0]++;
+                break;
+            case '2':
+                Memory[1]++;
+                break;
+            case '3':
+                Memory[2]++;
+                break;
+            case '4':
+                Memory[3]++;
+                break;
+            case '5':
+                Memory[4]++;
+                break;
+            case '6':
+                Memory[5]++;
+                break;
+            case '7':
+                Memory[6]++;
+                break;
+            case '8':
+                Memory[7]++;
+                break;
+            case '9':
+                Memory[8]++;
+                break;
+            case 'T':
+                Memory[9]++;
+                break;
+            case 'J':
+                Memory[10]++;
+                break;
+            case 'Q':
+                Memory[11]++;
+                break;
+            case 'K':
+                Memory[12]++;
+                break;
         }
     }
 }
