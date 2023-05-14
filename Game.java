@@ -1,9 +1,4 @@
 import java.util.ArrayList;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Formatter;
-import java.io.FileWriter;
-import java.util.Scanner;
 
 public class Game{
     protected static boolean verboseMode = false;

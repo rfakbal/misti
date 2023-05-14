@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.nio.file.Path;
 
+
 public class TwoPlayer extends Game{
     boolean ifPrint = false;
     Player one;

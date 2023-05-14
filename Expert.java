@@ -1,86 +1,92 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Expert extends Player {
     public Expert(String name) {
         super(name);
+        type = "E";
     }
 
-    public Card playCard(ArrayList<Card> table, ArrayList<Player> players) {
-        ArrayList<Card> validCards = new ArrayList<>();
-        for (Card card : Hand) {
-            
-            // Masa üzerindeki son kartın değeri ile aynı olan, pozitif puanlı kartları geçerli kartlar listesine eklenir
+    public Card playCard() {
+        ArrayList<Card> Table = Game.getTable();
+        Card chosen = null;
+        int localOutcome;
+        int smallestOutcome = 2147483647;
+        int index = 0;
 
-            if (card.getRank() == table.get(table.size() - 1).getRank() && card.getPoint() >= 0) {
-                validCards.add(card);
-            }
-        }
-
-        // Geçerli kart yoksa, rastgele bir kart seçin ve onu oynayın.
-        if (validCards.size() == 0) {
-            Random random = new Random();
-            int index = random.nextInt(Hand.size());
-            Card chosenCard = Hand.get(index);
-            Hand.remove(chosenCard);
-            return chosenCard;
-        }
-        
-        // Geçerli kartlar arasından en iyi kkarti secer
-        Card bestCard = null;
-        int highestPoint = 0;
-        for (Card card : validCards) {
-            // Her kart için bir değerlendirme yapın ve en yüksek değerli karti bulmaca anlarsin ya
-            int cardValue = evaluateCard(card, players);
-            if (cardValue > highestPoint) {
-                bestCard = card;
-                highestPoint = cardValue;
-            }
-        }
-        Hand.remove(bestCard);
-        return bestCard;
-    }
-    // Elimizdeki toplam değerini ve diğer oyuncuların son oynanan kartlarını degerlerini hesaplariz
-    public int evaluateCard(Card card, ArrayList<Player> players) {
-        int cardValue = card.getPoint();
-
-        int handValue = evaluateHand(Hand, players);
-        if (handValue >= 20) {
-          
-            if (card.getPoint() > 0) {
-                cardValue -= 2;
-            }
-        } else {
-            if (card.getPoint() >= 10) {
-                cardValue += 2;
-            }
-        }
-
-        return cardValue;
-    }
-
-    public int evaluateHand(ArrayList<Card> hand, ArrayList<Player> players) {
-        int handValue = 0;
-        // Elimizdeki toplam puanını hesaplar
-        for (Card card : hand) {
-            handValue += card.getPoint();
-        }
-
-        for (Player player : players) {
-            if (player == this) {
-                continue;
-            }
-            // Diğer oyuncuların son oynanan kartlarından, 10 veya daha yüksek puanlı bir kart oynandıysa elindeki degere 2 puan ekler 
-
-            int playedCardsCount = player.getPlayedCards().size();
-            if (playedCardsCount > 0) {
-                Card lastPlayedCard = player.getPlayedCards().get(playedCardsCount - 1);
-                if (lastPlayedCard.getPoint() >= 10) {
-                    handValue += 2;
+        for (int i = 0 ; i < Hand.size() ; i++) { //for each card in Hand
+            if (Table.size() > 0) { // checking if table is empty
+                if (Hand.get(i).cardCheck(Table.get(Table.size()-1))) { // if the card is able to take the table
+                    localOutcome = Game.countTablePoints() + Hand.get(i).getPoint(); // how many points the player will get if it takes cards on the table
+                    if (localOutcome > 0) { // if positive, bot takes cards
+                        chosen = Hand.get(i);
+                        index = i;
+                        break;
+                    } else {
+                        if (Hand.get(i).getPoint() >= 0) { // if the point value is positive, bot will try to play the card with the lowest point + minimum left in the deck.
+                            localOutcome = (Hand.get(i).getPoint() * Memory[getRankIndex(Hand.get(i))]) ; 
+                            if (localOutcome <= smallestOutcome) {
+                                smallestOutcome = localOutcome;
+                                chosen = Hand.get(i);
+                                index = i;
+                            }
+                        } else { // if the point value is negative, bot will try to play the card with the lowest point + maximum left in the deck.
+                            localOutcome = (-Hand.get(i).getPoint() * (4 - Memory[getRankIndex(Hand.get(i))])) ;
+                            if (localOutcome <= smallestOutcome) {
+                                smallestOutcome = localOutcome;
+                                chosen = Hand.get(i);
+                                index = i;
+                            }
+                        }
+                    }
+                } else { // if the bot cannot take the table, it will try to play the most logical card to not give the other player positive points
+                    if (Hand.get(i).getPoint() >= 0) {
+                        localOutcome = (Hand.get(i).getPoint() * Memory[getRankIndex(Hand.get(i))]) ; // same as line 26
+                        if (localOutcome <= smallestOutcome) {
+                            smallestOutcome = localOutcome;
+                            chosen = Hand.get(i);
+                            index = i;
+                        }
+                    } else {
+                        localOutcome = (-Hand.get(i).getPoint() * (4 - Memory[getRankIndex(Hand.get(i))])) ; // same as line 33
+                        if (localOutcome <= smallestOutcome) {
+                            smallestOutcome = localOutcome;
+                            chosen = Hand.get(i);
+                            index = i;
+                        }
+                    }
+                }
+            } else { // if the table is empty, bot will play the smallest point valued card besides jack
+                if (Hand.get(i).getRank() == 'J') {
+                    localOutcome = 2147483647; // Biggest integer to prevent the bot from playing Jack on the empty table if any other options available.
+                }
+                if (Hand.get(i).getPoint() >= 0) {
+                    localOutcome = (Hand.get(i).getPoint() * Memory[getRankIndex(Hand.get(i))]) ; // same as line 26
+                    if (localOutcome <= smallestOutcome) {
+                        smallestOutcome = localOutcome;
+                        chosen = Hand.get(i);
+                        index = i;
+                    }
+                } else {
+                    localOutcome = (-Hand.get(i).getPoint() * (4 - Memory[getRankIndex(Hand.get(i))])) ; // same as line 33
+                    if (localOutcome <= smallestOutcome) {
+                        smallestOutcome = localOutcome;
+                        chosen = Hand.get(i);
+                        index = i;
+                    }
                 }
             }
         }
-
-        return handValue;
+        chosen = Hand.get(index);
+        Hand.remove(index);
+        if (Game.getVerbose()) {
+            System.out.print(playerName + " played ");
+            chosen.cardPrint();
+            System.out.println();
+        }
+        addToMemory(chosen);
+        return chosen;
+        
+    
     }
+        
 }

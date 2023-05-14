@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.nio.file.Path;
 
-
 public class FourPlayer extends Game {
     boolean ifPrint = false;
     protected Player one;
