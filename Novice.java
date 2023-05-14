@@ -16,6 +16,7 @@ public class Novice extends Player{
             temp.cardPrint();
             System.out.println();
         }
+        addToMemory(temp);
         return temp;
     }
 }

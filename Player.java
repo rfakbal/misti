@@ -55,6 +55,9 @@ public class Player {
     }
 
     public void addToMemory(Card a) {
+        for (int b : Memory) {
+            System.out.print(b);
+        }
         switch(a.getRank()) {
             case 'A':
                 Memory[0]++;

@@ -56,6 +56,7 @@ public class Regular extends Player {
             chosen.cardPrint();
             System.out.println();
         }
+        addToMemory(chosen);
         return chosen;
         
     }

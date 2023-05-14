@@ -27,6 +27,7 @@ public class Human extends Player {
             chosenCard.cardPrint();
             System.out.println();
         }
+        addToMemory(chosenCard);
         return chosenCard;
     }
 
