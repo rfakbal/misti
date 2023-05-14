@@ -75,7 +75,6 @@ public class Main {
 
 
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
             System.out.println("Try again with valid arguments (EX: <PlayerCount> <PointFilePath> <Name> <Type> (For each player) <RoundCount> <VerboseMode>)");
             System.out.println("Available Player Counts: 2, 4 | Available Player Types: H(Human), N(Novice), R(Regular), E(Expert) | Verbose Modes: true, false");
             System.exit(1);
