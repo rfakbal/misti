@@ -82,7 +82,7 @@ public class Main {
             }
             break;
         }
-        
+        misti.printFinalScores();
         misti.drawScoreBoard();
         
     }

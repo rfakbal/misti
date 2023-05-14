@@ -7,19 +7,20 @@ public class Novice extends Player{
 
     @Override
     public Card playCard(){
-        System.out.println("\nNovice's Hand:");
-        for (Card a : Hand){
-            a.cardPrint();
-        }
-        System.out.println();
+        //System.out.println("\n" + playerName +"'s Hand:");
+        //for (Card a : Hand){ //delete in final version bba
+        //    a.cardPrint();
+        //}
+        //System.out.println();
         Random rd = new Random(System.currentTimeMillis());
         int index = rd.nextInt(Hand.size());
         Card temp = Hand.get(index);
         Hand.remove(index);
-        System.out.println();
-        System.out.println(getPlayerName() + " played ");
-        temp.cardPrint();
-        System.out.println();
+        if (Game.getVerbose()) {
+            System.out.print(getPlayerName() + " played ");
+            temp.cardPrint();
+            System.out.println();
+        }
         return temp;
     }
 }

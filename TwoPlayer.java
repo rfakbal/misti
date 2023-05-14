@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class TwoPlayer extends Game{
     Player one;
     Player two;
 
+    
 
     public TwoPlayer(String Player1, String Type1, String Player2, String Type2 , boolean verboseMode){
         super();
@@ -17,7 +19,9 @@ public class TwoPlayer extends Game{
         two = playerCreator(Player2 , Type2 , two);
 
         this.verboseMode = verboseMode;
-        
+        System.out.println(one.getPlayerName());
+        playerList.add(one);
+        playerList.add(two);
     }
 
     @Override
@@ -30,11 +34,14 @@ public class TwoPlayer extends Game{
             two.recieveCard(deck.giveCard());
         }
 
+        verboseHand(verboseMode , playerList);
+
         for(int i = 0 ; i < 4 ; i++) {
-            printTable();
+            if (verboseMode) {
+                System.out.print("\n" +i+ ". turn of the hand:");
+            }
             addToTable(one.playCard());
             checkPlay(one);
-            printTable();
             addToTable(two.playCard());
             checkPlay(two);
         }

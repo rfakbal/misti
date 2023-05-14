@@ -22,7 +22,10 @@ public class FourPlayer extends Game {
 
         this.verboseMode = verboseMode;
 
-        
+        playerList.add(one);
+        playerList.add(two);
+        playerList.add(three);
+        playerList.add(four);
     }
 
     @Override
@@ -37,17 +40,18 @@ public class FourPlayer extends Game {
             four.recieveCard(deck.giveCard());
         }
 
+        verboseHand(verboseMode , playerList);
+
         for(int i = 0 ; i < 4 ; i++) {
-            printTable();
+            if (verboseMode) {
+                System.out.print("\n" +i+ ". turn of the hand:");
+            }
             addToTable(one.playCard());
             checkPlay(one);
-            printTable();
             addToTable(two.playCard());
             checkPlay(two);
-            printTable();
             addToTable(three.playCard());
             checkPlay(three);
-            printTable();
             addToTable(four.playCard());
             checkPlay(four);
         }
@@ -151,10 +155,9 @@ public class FourPlayer extends Game {
 
     @Override
     public void drawScoreBoard(){
+        ifPrint = true;
         scoreBoardAdd(one);
-        scoreBoardAdd(two);
-        scoreBoardAdd(three);
-        scoreBoardAdd(four);
+
     } 
 
 }

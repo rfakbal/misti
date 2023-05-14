@@ -43,4 +43,13 @@ public class Player {
     public String getType(){
         return this.type;
     }
+
+    public void printHand(){
+        for (int i = 0 ; i < Hand.size() ; i++){
+            Hand.get(i).cardPrint();
+            if (i+1 < Hand.size()) {
+                System.out.print(",");
+            }
+        }
+    }
 }

@@ -10,8 +10,9 @@ public class Human extends Player {
 
     @Override
     public Card playCard() {
+        Game.printTable();
         System.out.println("Your hand: ");
-        for (int i = 0; i < Hand.size(); i++) {
+        for (int i = 0; i < Hand.size(); i++) { //printhand ile degistirilecek bba
             System.out.print((i + 1) + ": ");
             Hand.get(i).cardPrint();
             System.out.println();
@@ -20,6 +21,11 @@ public class Human extends Player {
         int choice = getInput(Hand.size() + 1) - 1;
         Card chosenCard = Hand.get(choice);
         Hand.remove(choice);
+        if (Game.getVerbose()) {
+            System.out.print( "You have played ");
+            chosenCard.cardPrint();
+            System.out.println();
+        }
         return chosenCard;
     }
 
@@ -40,6 +46,7 @@ public class Human extends Player {
                 sc.nextLine();
             }
         }
+        sc.close();
         return input;
 
     }

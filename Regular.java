@@ -7,11 +7,11 @@ public class Regular extends Player {
 
     @Override
     public Card playCard() {
-        System.out.println("\nRegular's Hand:");
-        for (Card a : Hand){
-            a.cardPrint();
-        }
-        System.out.println();
+        //System.out.println("\n" + playerName +"'s Hand:");
+        //for (Card a : Hand){ //delete in final version bba
+        //    a.cardPrint();
+        //}
+        //System.out.println();
         ArrayList<Card> Table = Game.getTable();
         Card chosen = null;
         int localOutcome;
@@ -64,10 +64,11 @@ public class Regular extends Player {
         }
         chosen = Hand.get(0);
         Hand.remove(index);
-        System.out.println();
-        System.out.println(playerName + " played ");
-        chosen.cardPrint();
-        System.out.println();
+        if (Game.getVerbose()) {
+            System.out.print(playerName + " played ");
+            chosen.cardPrint();
+            System.out.println();
+        }
         return chosen;
         
     }

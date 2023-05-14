@@ -6,11 +6,12 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Game{
-    protected boolean verboseMode = false;
+    protected static boolean verboseMode = false;
     protected int rounds;
 
-    static ArrayList<Card> table = new ArrayList<Card>();
-    Deck deck;
+    protected static ArrayList<Card> table = new ArrayList<Card>();
+    protected ArrayList<Player> playerList = new ArrayList<>();
+    protected Deck deck;
 
     public Game() {
         deck = new Deck();
@@ -64,7 +65,7 @@ public class Game{
         table.add(c);
     }
 
-    public void printTable(){
+    public static void printTable(){
         if (table.size() > 0) {
             for(int i = 0 ; i < table.size()-1 ; i++){
                 table.get(i).cardPrint();
@@ -107,6 +108,35 @@ public class Game{
             point += table.get(i).getPoint();
         }
         return point;
+    }
+
+    public static boolean getVerbose(){
+        return verboseMode;
+    }
+
+    public void verboseHand(boolean verbose, ArrayList<Player> list){
+        if (verbose){
+            System.out.print("Hands: | ");
+            for(Player a : list) {
+            System.out.print(a.getPlayerName() + ": {" );
+            a.printHand();
+            System.out.print("},Score:" + a.getPlayerScore() + " | ");
+            }
+            System.out.println();
+        } else {
+            System.out.print("| ");
+            for(Player a : list ) {
+                System.out.print(a.getPlayerName() + "'s score: " + a.getPlayerScore() + " | ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void printFinalScores() {
+        System.out.println("----------Final scores:----------");
+        for (Player a : playerList) {
+            System.out.println(a.getPlayerName() + " - " + a.getPlayerScore());
+        }
     }
 
 }

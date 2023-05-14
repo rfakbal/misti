@@ -18,13 +18,7 @@ public class Deck{
         Scanner sc = new Scanner(System.in);
         String file = sc.nextLine();
         pointRead(Deck,file);
-        Test();
-
-    }
-    public void Test(){
-        for (Card a: Deck){
-            a.cardPrint();
-        }
+        sc.close();
     }
 
     public void shuffleDeck(){
