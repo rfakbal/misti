@@ -33,13 +33,22 @@ public class Main {
             if(numPlayers== 4 && (args.length > 12) ){
                 throw new IllegalArgumentException("Too many arguments for 4 players. ");
             }
+
+            if(numPlayers == 2 && !(args[7].toLowerCase().equals("true")||args[7].toLowerCase().equals("false"))){
+                throw new IllegalArgumentException(" ");
+            }
+
+            if(numPlayers == 4 && !(args[11].toLowerCase().equals("true")||args[11].toLowerCase().equals("false"))){
+                throw new IllegalArgumentException(" ");
+            }
+
             if(numPlayers==2 ){
                 playerName_1 = args[2];
                 playerExpertise_1 = args[3].toUpperCase();
                 playerName_2 = args[4];
                 playerExpertise_2 = args[5].toUpperCase();
                 numRounds = Integer.valueOf(args[6]);
-                verbose = args[7].equals("true");
+                verbose = args[7].toLowerCase().equals("true");
             }
 
             else{
@@ -52,7 +61,7 @@ public class Main {
                 playerName_4 = args[8];
                 playerExpertise_4 = args[9].toUpperCase();
                 numRounds = Integer.valueOf(args[10]);
-                verbose = args[11].equals("true");
+                verbose = args[11].toLowerCase().equals("true");
             }
 
             int humancount = 0;
@@ -75,7 +84,7 @@ public class Main {
 
 
         } catch (Exception e) {
-            System.out.println("Try again with valid arguments (EX: <PlayerCount> <PointFilePath> <Name> <Type> (For each player) <RoundCount> <VerboseMode>)");
+            System.out.println("Try again with valid arguments (EX: <PlayerCount> <PointFilePath> <Name> <Type> (For each player) <RoundCount> <VerboseModeBoolean>)");
             System.out.println("Available Player Counts: 2, 4 | Available Player Types: H(Human), N(Novice), R(Regular), E(Expert) | Verbose Modes: true, false");
             System.exit(1);
 
