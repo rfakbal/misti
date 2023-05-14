@@ -12,6 +12,7 @@ public class Game{
     protected static ArrayList<Card> table = new ArrayList<Card>();
     protected ArrayList<Player> playerList = new ArrayList<>();
     protected Deck deck;
+    protected Player lastTaker = null;
 
     public Game() {
         deck = new Deck();
@@ -87,6 +88,7 @@ public class Game{
                     point = (table.get(1).getPoint() + table.get(0).getPoint()) * 5;
                     System.out.println(a.getPlayerName() + " earned " + point + " points.");
                     a.setPlayerScore(point);
+                    lastTaker = a;
                     point = 0;
                     table.clear();
                 }
@@ -95,6 +97,7 @@ public class Game{
                     point = countTablePoints();
                     System.out.println(a.getPlayerName() + " earned " + point + " points.");
                     a.setPlayerScore(point);
+                    lastTaker = a;
                     point = 0;
                     table.clear();
                 }
@@ -129,6 +132,14 @@ public class Game{
                 System.out.print(a.getPlayerName() + "'s score: " + a.getPlayerScore() + " | ");
             }
             System.out.println();
+        }
+    }
+
+    public void giveRemainingCards(){
+        int remaining = countTablePoints();
+        lastTaker.setPlayerScore(remaining);
+        if(verboseMode) {
+            System.out.println(lastTaker.getPlayerName() + " got the cards on the table. (" + remaining + " points)");
         }
     }
 

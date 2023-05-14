@@ -82,6 +82,7 @@ public class Main {
             }
             break;
         }
+        misti.giveRemainingCards();
         misti.printFinalScores();
         misti.drawScoreBoard();
         
